@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+ #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # File: bp.py
 
@@ -62,9 +62,6 @@ def backprop(x, y, biases, weights, cost, num_layers):
     # Here you need to implement the backward pass to compute the
     # gradient for each weight and bias
     ###
-    for k in range(num_layers, -1, -1):
-
-
 
     return (nabla_b, nabla_w)
 
