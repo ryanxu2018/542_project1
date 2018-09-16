@@ -11,5 +11,6 @@ def sigmoid(z):
 
 def sigmoid_prime(z):
     """return derivative of sigmoid function"""
-    return dev(sigmoid, z, dx = 1e-6)
+    #return dev(sigmoid, z, dx = 1e-6)
+    return sigmoid(z)*(1-sigmoid(z))
 
