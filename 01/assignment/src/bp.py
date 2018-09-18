@@ -40,15 +40,12 @@ def backprop(x, y, biases, weights, cost, num_layers):
     #
     a =[np.zeros(b.shape) for b in biases]
     h_s = [np.zeros(b.shape) for b in biases]
-    b = [np.zeros(c.shape) for c in biases]
+
     h0=[x]
     activations=h0+h_s
 
-    #print(a)
-    #print(weights)
-    #print(weights[0])
-    for k in range(2):
-       a[k]= biases[k] + np.dot(weights[k],activations[k])
+    for k in range(num_layers -1):
+       a[k]= biases[k] + np.dot(weights[k], activations[k])
        activations[k+1] = sigmoid(a[k])
 
 
@@ -57,11 +54,19 @@ def backprop(x, y, biases, weights, cost, num_layers):
     # activations[-1] is the list of activations of the output layer
     delta = (cost).delta(activations[-1], y)
 
+
     ### Implement here
     # backward pass
     # Here you need to implement the backward pass to compute the
     # gradient for each weight and bias
     ###
-
+    for k in reversed(range(num_layers)):
+        if k-1<0:
+            break
+        delta = np.multiply(delta, sigmoid_prime(activations[k]))
+        tmp = np.asarray(weights[k-1])
+        nabla_b[k-1] = delta
+        nabla_w[k-1] = np.dot(delta, activations[k-1].T)
+        delta = np.dot(tmp.T, delta)
     return (nabla_b, nabla_w)
 
