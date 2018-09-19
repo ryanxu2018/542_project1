@@ -65,8 +65,8 @@ def main():
     model.SGD(
         training_data=train_data,
         epochs=100,
-        mini_batch_size=128,
-        eta=1e-3,
+        mini_batch_size=64,
+        eta=3e-3,
         lmbda = 0.0,
         evaluation_data=valid_data,
         monitor_evaluation_cost=True,
